@@ -1,5 +1,5 @@
 export const images = {
-	btc: "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
+	BTC: "https://cryptologos.cc/logos/bitcoin-btc-logo.png",
 	ETH: "https://cryptologos.cc/logos/ethereum-eth-logo.png",
 	DOGE: "https://cryptologos.cc/logos/dogecoin-doge-logo.png",
 	SHIB: "https://assets.coingecko.com/coins/images/11939/small/shiba.png",

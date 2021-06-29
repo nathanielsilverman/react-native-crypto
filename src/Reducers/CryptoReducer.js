@@ -33,7 +33,7 @@ export default function (state = initialState, action) {
 		case FETCHING_COIN_DATA_FAIL:
 			return Object.assign({}, state, {
 				data: null,
-				errorMessage: action.err,
+				errorMessage: action.payload,
 				hasError: true,
 				isFetching: false,
 			});

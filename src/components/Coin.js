@@ -63,13 +63,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const Coin = ({
-	symbol,
-	name,
-	current_price,
-	price_change_percentage_24h,
-	price_change_percentage_7d,
-}) => {
+const Coin = ({ id, symbol, name, price, percentage_change_24h }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.upperRow}>
@@ -83,8 +77,12 @@ const Coin = ({
 				<Text style={styles.separator}>|</Text>
 				<Text style={styles.coinName}>{name}</Text>
 				<Text style={styles.coinPrice}>
-					{current_price}
-					<Text style={styles.dollarSign}>$</Text>
+					<Text style={styles.dollarSign}>
+						$
+						{Number(price) > 1
+							? `${Number(price).toFixed(2).toLocaleString()}`
+							: `${Number(price).toFixed(8).toLocaleString()}`}
+					</Text>
 				</Text>
 			</View>
 			<View style={styles.statisticContainer}>
@@ -92,24 +90,15 @@ const Coin = ({
 					24 hour:{" "}
 					<Text
 						style={
-							price_change_percentage_24h < 0
+							percentage_change_24h < 0
 								? styles.inTheRed
 								: styles.inTheGreen
 						}
 					>
-						{price_change_percentage_24h} %{" "}
-					</Text>
-				</Text>
-				<Text>
-					7 day:{" "}
-					<Text
-						style={
-							price_change_percentage_7d < 0
-								? styles.inTheRed
-								: styles.inTheGreen
-						}
-					>
-						{price_change_percentage_7d} %{" "}
+						{Number(percentage_change_24h)
+							.toFixed(2)
+							.toLocaleString()}
+						%
 					</Text>
 				</Text>
 			</View>

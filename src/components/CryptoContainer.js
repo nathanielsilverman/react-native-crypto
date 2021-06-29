@@ -18,11 +18,10 @@ class CryptoContainer extends Component {
 			return crypto.data.map((coin) => (
 				<Coin
 					key={coin.name}
-					coin_name={coin.coin_name}
+					name={coin.name}
 					symbol={coin.symbol}
-					price_usd={coin.current_price}
-					percent_change_24h={coin.percent_change_24h}
-					percent_change_7d={coin.percent_change_7d}
+					price={coin.price}
+					percentage_change_24h={coin.percentage_change_24h}
 				/>
 			));
 		}
