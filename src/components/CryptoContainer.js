@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { Spinner } from "react-native-loading-spinner-overlay";
+import Spinner from "react-native-loading-spinner-overlay";
 
 import FetchCoinData from "./../Actions/FetchCoinData";
 import Coin from "./Coin";
@@ -9,9 +9,7 @@ import Coin from "./Coin";
 class CryptoContainer extends Component {
 	componentDidMount() {
 		this.props.FetchCoinData();
-		console.log("loaded coins");
 	}
-
 	renderCoins() {
 		const { crypto } = this.props;
 		if (crypto.data != null) {
@@ -25,7 +23,17 @@ class CryptoContainer extends Component {
 				/>
 			));
 		}
-		return <Coin />;
+		return (
+			<ScrollView contentContainerStyle={styles.contentContainer}>
+				<Spinner
+					size={"large"}
+					visible={true}
+					textContent={"Loading..."}
+					textStyle={{ color: "#253145" }}
+					animation="fade"
+				/>
+			</ScrollView>
+		);
 	}
 
 	render() {
@@ -35,10 +43,9 @@ class CryptoContainer extends Component {
 			return (
 				<View>
 					<Spinner
-						visible={crypto.isFetching}
-						textContent={"Loading..."}
+						cancelable
+						text={"Loading..."}
 						textStyle={{ color: "#253145" }}
-						animation="fade"
 					/>
 				</View>
 			);
