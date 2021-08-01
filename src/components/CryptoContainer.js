@@ -6,54 +6,60 @@ import Spinner from "react-native-loading-spinner-overlay";
 import FetchCoinData from "./../Actions/FetchCoinData";
 import Coin from "./Coin";
 
-class CryptoContainer extends Component {
-	componentDidMount() {
+class CryptoContainer extends Component
+{
+	componentDidMount ()
+	{
 		this.props.FetchCoinData();
 	}
-	renderCoins() {
+	renderCoins ()
+	{
 		const { crypto } = this.props;
-		if (crypto.data != null) {
-			return crypto.data.map((coin) => (
+		if ( crypto.data != null )
+		{
+			return crypto.data.map( ( coin ) => (
 				<Coin
-					key={coin.name}
-					name={coin.name}
-					symbol={coin.symbol}
-					price={coin.price}
-					percentage_change_24h={coin.percentage_change_24h}
+					key={ coin.name }
+					name={ coin.name }
+					symbol={ coin.symbol }
+					price={ coin.price }
+					percentage_change_24h={ coin.percentage_change_24h }
 				/>
-			));
+			) );
 		}
 		return (
-			<ScrollView contentContainerStyle={styles.contentContainer}>
+			<ScrollView contentContainerStyle={ styles.contentContainer }>
 				<Spinner
-					size={"large"}
-					visible={true}
-					textContent={"Loading..."}
-					textStyle={{ color: "#253145" }}
+					size={ "large" }
+					visible={ true }
+					textContent={ "Loading..." }
+					textStyle={ { color: "#253145" } }
 					animation="fade"
 				/>
 			</ScrollView>
 		);
 	}
 
-	render() {
+	render ()
+	{
 		const { crypto } = this.props;
 		const { contentContainer } = styles;
-		if (crypto.isFetching) {
+		if ( crypto.isFetching )
+		{
 			return (
 				<View>
 					<Spinner
 						cancelable
-						text={"Loading..."}
-						textStyle={{ color: "#253145" }}
+						text={ "Loading..." }
+						textStyle={ { color: "#253145" } }
 					/>
 				</View>
 			);
 		}
 
 		return (
-			<ScrollView contentContainerStyle={contentContainer}>
-				{this.renderCoins()}
+			<ScrollView contentContainerStyle={ contentContainer }>
+				{ this.renderCoins() }
 			</ScrollView>
 		);
 	}
@@ -66,10 +72,11 @@ const styles = {
 	},
 };
 
-function mapStateToProps(state) {
+function mapStateToProps ( state )
+{
 	return {
 		crypto: state.crypto,
 	};
 }
 
-export default connect(mapStateToProps, { FetchCoinData })(CryptoContainer);
+export default connect( mapStateToProps, { FetchCoinData } )( CryptoContainer );

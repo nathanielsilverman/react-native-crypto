@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { images } from "../Utils/CoinIcons";
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		display: "flex",
 		marginBottom: 20,
@@ -61,33 +61,34 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		marginLeft: 5,
 	},
-});
+} );
 
-const Coin = ({ id, symbol, name, price, percentage_change_24h }) => {
+const Coin = ( { id, symbol, name, price, percentage_change_24h } ) =>
+{
 	return (
-		<View style={styles.container}>
-			<View style={styles.upperRow}>
+		<View style={ styles.container }>
+			<View style={ styles.upperRow }>
 				<Image
-					style={styles.image}
-					source={{
-						uri: images[symbol],
-					}}
+					style={ styles.image }
+					source={ {
+						uri: images[ symbol ],
+					} }
 				/>
-				<Text style={styles.coinSymbol}>{symbol}</Text>
-				<Text style={styles.separator}>|</Text>
-				<Text style={styles.coinName}>{name}</Text>
-				<Text style={styles.coinPrice}>
-					<Text style={styles.dollarSign}>
+				<Text style={ styles.coinSymbol }>{ symbol }</Text>
+				<Text style={ styles.separator }>|</Text>
+				<Text style={ styles.coinName }>{ name }</Text>
+				<Text style={ styles.coinPrice }>
+					<Text style={ styles.dollarSign }>
 						$
-						{Number(price) > 1
-							? `${Number(price).toFixed(2).toLocaleString()}`
-							: `${Number(price).toFixed(8).toLocaleString()}`}
+						{ Number( price ) > 1
+							? `${ Number( price ).toFixed( 2 ).toLocaleString() }`
+							: `${ Number( price ).toFixed( 8 ).toLocaleString() }` }
 					</Text>
 				</Text>
 			</View>
-			<View style={styles.statisticContainer}>
+			<View style={ styles.statisticContainer }>
 				<Text>
-					24 hour:{" "}
+					24 hour:{ " " }
 					<Text
 						style={
 							percentage_change_24h < 0
@@ -95,9 +96,9 @@ const Coin = ({ id, symbol, name, price, percentage_change_24h }) => {
 								: styles.inTheGreen
 						}
 					>
-						{Number(percentage_change_24h)
-							.toFixed(2)
-							.toLocaleString()}
+						{ Number( percentage_change_24h )
+							.toFixed( 2 )
+							.toLocaleString() }
 						%
 					</Text>
 				</Text>
