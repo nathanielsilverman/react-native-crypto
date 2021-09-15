@@ -1,6 +1,7 @@
 import axios from "axios";
 import { apiBaseURL, apiKey } from "../Utils/Constants";
-import {
+import
+{
 	FETCHING_COIN_DATA,
 	FETCHING_COIN_DATA_SUCCESS,
 	FETCHING_COIN_DATA_FAIL,
@@ -13,19 +14,26 @@ const cryptoSlugs = [
 	"shiba-inu",
 	"cardano",
 	"harmony",
+	'ripple',
 	"crypto-com-coin",
 ];
 
-export default function FetchCoinData() {
-	return (dispatch) => {
-		dispatch({ type: FETCHING_COIN_DATA });
+
+
+export default function FetchCoinData ()
+{
+	return ( dispatch ) =>
+	{
+		dispatch( { type: FETCHING_COIN_DATA } );
 		return axios
 			.get(
-				`https://api.coincap.io/v2/assets?ids=${cryptoSlugs.join(",")}`
+				`https://api.coincap.io/v2/assets?ids=${ cryptoSlugs.join( "," ) }`
 			)
-			.then((res) => {
+			.then( ( res ) =>
+			{
 				const coinData = [];
-				res.data.data.forEach((element) => {
+				res.data.data.forEach( ( element ) =>
+				{
 					const coin = {
 						id: element.id,
 						symbol: element.symbol,
@@ -33,19 +41,20 @@ export default function FetchCoinData() {
 						price: element.priceUsd,
 						percentage_change_24h: element.changePercent24Hr,
 					};
-					coinData.push(coin);
-				});
+					coinData.push( coin );
+				} );
 				// console.log(JSON.stringify(coinData));
-				dispatch({
+				dispatch( {
 					type: FETCHING_COIN_DATA_SUCCESS,
 					payload: coinData,
-				});
-			})
-			.catch((err) => {
-				dispatch({
+				} );
+			} )
+			.catch( ( err ) =>
+			{
+				dispatch( {
 					type: FETCHING_COIN_DATA_FAIL,
 					payload: err,
-				});
-			});
+				} );
+			} );
 	};
 }
